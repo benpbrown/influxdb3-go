@@ -38,8 +38,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/benpbrown/influxdb3-go/v2/influxdb3"
-	"github.com/benpbrown/influxdb3-go/v2/influxdb3/batching"
+	"github.com/InfluxCommunity/influxdb3-go/v2/influxdb3"
+	"github.com/InfluxCommunity/influxdb3-go/v2/influxdb3/batching"
 	"github.com/influxdata/line-protocol/v2/lineprotocol"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

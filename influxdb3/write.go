@@ -35,7 +35,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/benpbrown/influxdb3-go/v2/influxdb3/gzip"
+	"github.com/InfluxCommunity/influxdb3-go/v2/influxdb3/gzip"
 	"github.com/influxdata/line-protocol/v2/lineprotocol"
 )
 

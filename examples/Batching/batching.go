@@ -8,8 +8,8 @@ import (
 	"text/tabwriter"
 	"time"
 
-	"github.com/benpbrown/influxdb3-go/v2/influxdb3"
-	"github.com/benpbrown/influxdb3-go/v2/influxdb3/batching"
+	"github.com/InfluxCommunity/influxdb3-go/v2/influxdb3"
+	"github.com/InfluxCommunity/influxdb3-go/v2/influxdb3/batching"
 )
 
 const NumPoints = 54
