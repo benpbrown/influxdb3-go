@@ -28,7 +28,7 @@ import (
 	"log/slog"
 	"sync"
 
-	"github.com/InfluxCommunity/influxdb3-go/v2/influxdb3"
+	"github.com/benpbrown/influxdb3-go/v2/influxdb3"
 )
 
 // DefaultBatchSize is the default number of points emitted

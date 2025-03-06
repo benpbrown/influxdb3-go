@@ -2,17 +2,17 @@
     <img src="gopher.png" alt="Gopher" width="150px">
 </p>
 <p align="center">
-    <a href="https://pkg.go.dev/github.com/InfluxCommunity/influxdb3-go/v2">
-        <img src="https://pkg.go.dev/badge/github.com/InfluxCommunity/influxdb3-go.svg" alt="Go Reference">
+    <a href="https://pkg.go.dev/github.com/benpbrown/influxdb3-go/v2">
+        <img src="https://pkg.go.dev/badge/github.com/benpbrown/influxdb3-go.svg" alt="Go Reference">
     </a>
-    <a href="https://goreportcard.com/report/github.com/InfluxCommunity/influxdb3-go">
-        <img src="https://goreportcard.com/badge/github.com/InfluxCommunity/influxdb3-go" alt="Go Report Card">
+    <a href="https://goreportcard.com/report/github.com/benpbrown/influxdb3-go">
+        <img src="https://goreportcard.com/badge/github.com/benpbrown/influxdb3-go" alt="Go Report Card">
     </a>
-    <a href="https://github.com/InfluxCommunity/influxdb3-go/actions/workflows/codeql-analysis.yml">
-        <img src="https://github.com/InfluxCommunity/influxdb3-go/actions/workflows/codeql-analysis.yml/badge.svg?branch=main" alt="CodeQL analysis">
+    <a href="https://github.com/benpbrown/influxdb3-go/actions/workflows/codeql-analysis.yml">
+        <img src="https://github.com/benpbrown/influxdb3-go/actions/workflows/codeql-analysis.yml/badge.svg?branch=main" alt="CodeQL analysis">
     </a>
-    <a href="https://github.com/InfluxCommunity/influxdb3-go/actions/workflows/linter.yml">
-        <img src="https://github.com/InfluxCommunity/influxdb3-go/actions/workflows/linter.yml/badge.svg" alt="Lint Code Base">
+    <a href="https://github.com/benpbrown/influxdb3-go/actions/workflows/linter.yml">
+        <img src="https://github.com/benpbrown/influxdb3-go/actions/workflows/linter.yml/badge.svg" alt="Lint Code Base">
     </a>
     <a href="https://dl.circleci.com/status-badge/redirect/gh/InfluxCommunity/influxdb3-go/tree/main">
         <img src="https://dl.circleci.com/status-badge/img/gh/InfluxCommunity/influxdb3-go/tree/main.svg?style=svg" alt="CircleCI">
@@ -59,13 +59,13 @@ To use this client, you'll need the following credentials for writing and queryi
 <!--pytest-codeblocks:cont-->
 
    ```sh
-   go get github.com/InfluxCommunity/influxdb3-go/v2/influxdb3
+   go get github.com/benpbrown/influxdb3-go/v2/influxdb3
    ```
 
 ### Outside a module (standalone)
 
 ```sh
-go install github.com/InfluxCommunity/influxdb3-go@latest
+go install github.com/benpbrown/influxdb3-go@latest
 ```
 
 ## Usage
@@ -79,7 +79,7 @@ import (
   "fmt"
   "os"
 
-  "github.com/InfluxCommunity/influxdb3-go/v2/influxdb3"
+  "github.com/benpbrown/influxdb3-go/v2/influxdb3"
 )
 ```
 
@@ -385,7 +385,7 @@ To run the examples, do the following:
 For help, please use our [Community Slack](https://app.slack.com/huddle/TH8RGQX5Z/C02UDUPLQKA)
 or [Community Page](https://community.influxdata.com/).
 
-Submit bugs or issues to the repository on GitHub: <https://github.com/InfluxCommunity/influxdb3-go>
+Submit bugs or issues to the repository on GitHub: <https://github.com/benpbrown/influxdb3-go>
 
 ## Contribution
 
