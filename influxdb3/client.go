@@ -50,6 +50,8 @@ type Client struct {
 	authorization string
 	// Cached base server API URL.
 	apiURL *url.URL
+	// Cached v3 base server API URL.
+	v3APIURL *url.URL
 	// Flight client for executing queries
 	queryClient flight.Client
 }
@@ -68,6 +70,19 @@ type httpParams struct {
 	body io.Reader
 }
 
+func cleanHostWithSuffix(hostAddress string, suffix string) (*url.URL, error) {
+	if !strings.HasSuffix(hostAddress, "/") {
+		// For subsequent path parts concatenation, url has to end with '/'
+		hostAddress = hostAddress + "/"
+	}
+	ret, err := url.Parse(hostAddress)
+	if err != nil {
+		return nil, fmt.Errorf("parsing host URL: %w", err)
+	}
+	ret.Path = path.Join(ret.Path, suffix) + "/"
+	return ret, nil
+}
+
 // New creates new Client with given config, where `Host` and `Token` are mandatory.
 func New(config ClientConfig) (*Client, error) {
 	// Validate the config
@@ -80,16 +95,15 @@ func New(config ClientConfig) (*Client, error) {
 	c := &Client{config: config}
 
 	// Prepare host API URL
-	hostAddress := config.Host
-	if !strings.HasSuffix(hostAddress, "/") {
-		// For subsequent path parts concatenation, url has to end with '/'
-		hostAddress = config.Host + "/"
-	}
-	c.apiURL, err = url.Parse(hostAddress)
+	c.apiURL, err = cleanHostWithSuffix(config.Host, "api/v2")
 	if err != nil {
-		return nil, fmt.Errorf("parsing host URL: %w", err)
+		return nil, err
 	}
-	c.apiURL.Path = path.Join(c.apiURL.Path, "api/v2") + "/"
+	// https://github.com/influxdata/influxdb/blob/a1f0f2b6910ff88cdbfba6358c0b532ad24faba0/influxdb3_server/src/http.rs#L1752
+	c.v3APIURL, err = cleanHostWithSuffix(config.Host, "api/v3")
+	if err != nil {
+		return nil, err
+	}
 
 	// Prepare authorization header value
 	authScheme := c.config.AuthScheme

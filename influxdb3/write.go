@@ -29,7 +29,9 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"reflect"
+	"strconv"
 	"strings"
 	"time"
 
@@ -151,13 +153,32 @@ func (c *Client) makeHTTPParams(buff []byte, options *WriteOptions) (*httpParams
 
 	var gzipThreshold = options.GzipThreshold
 
+	var noSync = options.NoSync
+
 	var body io.Reader
-	u, _ := c.apiURL.Parse("write")
-	params := u.Query()
-	params.Set("org", c.config.Organization)
-	params.Set("bucket", database)
-	params.Set("precision", precision.String())
-	u.RawQuery = params.Encode()
+
+	var u *url.URL
+	if !noSync {
+		// Standard v2 path
+		u, _ = c.apiURL.Parse("write")
+		params := u.Query()
+		params.Set("org", c.config.Organization)
+		params.Set("bucket", database)
+		params.Set("precision", precision.String())
+
+		u.RawQuery = params.Encode()
+	} else {
+		// Exceptional v3 path
+		u, _ = c.v3APIURL.Parse("write")
+		params := u.Query()
+		// https://github.com/influxdata/influxdb/blob/c724e06e3f4a4668a0e8d5df18d2ff16745300f5/influxdb3_server/src/http.rs#L533
+		params.Set("no_sync", strconv.FormatBool(noSync))
+		params.Set("db", database)
+		params.Set("precision", precision.String())
+
+		u.RawQuery = params.Encode()
+	}
+
 	body = bytes.NewReader(buff)
 	headers := http.Header{"Content-Type": {"application/json"}}
 	if gzipThreshold > 0 && len(buff) >= gzipThreshold {

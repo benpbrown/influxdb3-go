@@ -54,6 +54,12 @@ type WriteOptions struct {
 
 	// Write body larger than the threshold is gzipped. 0 for no compression.
 	GzipThreshold int
+
+	// NoSync controls whether the database should return before
+	// the write is durable. False is the safe option (wait for durability).
+	// True is unsafe and intends to offer better performance.
+	// Implies the use of the v3 write API.
+	NoSync bool
 }
 
 // DefaultQueryOptions specifies default query options
